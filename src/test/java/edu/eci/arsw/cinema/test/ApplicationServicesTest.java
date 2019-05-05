@@ -15,13 +15,12 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author cristian
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest()
+@SpringBootTest(classes = ApplicationServicesTest.class)
 public class ApplicationServicesTest {
+
     @Test
     public void contextLoads() {
         
-        
-        
-        
     }
+    
 }

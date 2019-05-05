@@ -16,12 +16,12 @@ import edu.eci.arsw.cinema.util.RedisMethods;
  * @author cristian
  */
 @SpringBootApplication
-@ComponentScan(basePackages = { "edu.eci.arsw.cinema" })
+@ComponentScan(basePackages = { "edu.eci.arsw" })
 public class CinemaAPIApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(CinemaAPIApplication.class, args);
-        RedisMethods.saveToREDIS("1", "Prueba save 1");
-        System.out.println(RedisMethods.getFromREDIS("1"));
+        //RedisMethods.saveToREDIS("1", "Prueba save 1");
+        //System.out.println(RedisMethods.getFromREDIS("1"));
     }
 }
