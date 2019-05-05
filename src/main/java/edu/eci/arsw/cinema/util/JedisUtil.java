@@ -21,7 +21,6 @@ public class JedisUtil {
                 config.setMaxWaitMillis(Long.valueOf(bundle.getString("redis.pool.maxWait")));
                 config.setTestOnBorrow(Boolean.valueOf(bundle.getString("redis.pool.testOnBorrow")));
                 config.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
-                System.out.println(bundle.getString("redis.ip"));
                 pool = new JedisPool(config, bundle.getString("redis.ip"),
                                 Integer.valueOf(bundle.getString("redis.port")));
         }

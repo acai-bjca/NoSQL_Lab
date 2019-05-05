@@ -32,37 +32,33 @@ public class RedisCinemaPersistence implements CinemaPersitence {
 
     public RedisCinemaPersistence() {
         // load stub data
-        String functionDate1 = "2018-12-18 15:30";
-        String functionDate2 = "2018-12-18 15:30";       
+        String functionDate1 = "2018-12-18 15:30";  
+        String functionDate2 = "2018-12-18 17:00";
         List<CinemaFunction> functionsX = new ArrayList<>();
         List<CinemaFunction> functionsY = new ArrayList<>();
-        Cinema c1 = new Cinema("cinemaX", functionsX);
-        Cinema c2 = new Cinema("cinemaY", functionsY);
         CinemaFunction funct1 = new CinemaFunction(new Movie("SuperHeroes Movie", "Action"), functionDate1);
         CinemaFunction funct2 = new CinemaFunction(new Movie("The Night", "Horror"), functionDate1);
-        CinemaFunction funct3 = new CinemaFunction(new Movie("Green Book", "Mystery"), functionDate1);
-        CinemaFunction funct4 = new CinemaFunction(new Movie("Harry Potter", "Fantasy"), functionDate1);    
-        
-        cinemas.put("cinemaX", c1);
-        cinemas.put("cinemaY", c2);        
-    
+        CinemaFunction funct3 = new CinemaFunction(new Movie("The Enigma", "Mystery"), functionDate1);
+        CinemaFunction funct4= new CinemaFunction(new Movie("SuperHeroes Movie", "Action"), functionDate2);
         //LOAD DATA FROM REDIS
         funct1.setSeats(RedisMethods.getSeatsRedis("cinemaX",funct1));
         funct2.setSeats(RedisMethods.getSeatsRedis("cinemaX",funct2));
         funct3.setSeats(RedisMethods.getSeatsRedis("cinemaY",funct3));
-        funct4.setSeats(RedisMethods.getSeatsRedis("cinemaY",funct4));        
-        
+        funct4.setSeats(RedisMethods.getSeatsRedis("cinemaY",funct4));
         functionsX.add(funct1);
         functionsX.add(funct2);
         functionsY.add(funct3);
         functionsY.add(funct4);  
+        Cinema c1 = new Cinema("cinemaX", functionsX);
+        Cinema c2 = new Cinema("cinemaY", functionsY);
+        cinemas.put("cinemaX", c1);
+        cinemas.put("cinemaY", c2);  
     }
 
     @Override
     public void buyTicket(int row, int col, String cinema, String date, String movieName) throws CinemaException {
-        CinemaFunction function = getFunctionsbyCinemaDateName(cinema, date, movieName);        
-        List<List<Boolean>> seats = RedisMethods.buyTicketRedis(cinema, function, row, col);
-        function.setSeats(seats);
+        CinemaFunction function = getFunctionsbyCinemaDateName(cinema, date, movieName);
+        RedisMethods.buyTicketRedis(cinema, function, row, col);
     }
 
     @Override

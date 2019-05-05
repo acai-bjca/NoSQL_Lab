@@ -12,12 +12,13 @@ package edu.eci.arsw.cinema.model;
 public class Movie {
     private String name;
     private String genre;
-    
-    public Movie(){}
-    
-    public Movie(String name, String genre){
-        this.name=name;
-        this.genre=genre;
+
+    public Movie() {
+    }
+
+    public Movie(String name, String genre) {
+        this.name = name;
+        this.genre = genre;
     }
 
     public String getName() {
@@ -35,4 +36,10 @@ public class Movie {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    @Override
+    public String toString() {
+        return "Movie={name=" + name + ", genre=" + genre + "}";
+    }
+    
 }

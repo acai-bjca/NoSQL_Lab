@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class Cinema {
     private String name;
-    private volatile List<CinemaFunction> functions; 
-    
-    
-    public Cinema(){}
-    
-    public Cinema(String name,List<CinemaFunction> functions){
-        this.name=name;
-        this.functions=functions;
+    private volatile List<CinemaFunction> functions;
+
+    public Cinema() {
+    }
+
+    public Cinema(String name, List<CinemaFunction> functions) {
+        this.name = name;
+        this.functions = functions;
     }
 
     public String getName() {
@@ -38,8 +38,13 @@ public class Cinema {
     public void setSchedule(List<CinemaFunction> functions) {
         this.functions = functions;
     }
-    
+
     public void addNewFunction(CinemaFunction function) {
-    	functions.add(function);
+        functions.add(function);
+    }
+
+    @Override
+    public String toString() {
+        return "Cinema={name=" + name + ",functions=" + functions + "}";
     }
 }

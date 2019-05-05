@@ -60,9 +60,12 @@ public class RedisMethods {
         ObjectMapper mapper = new ObjectMapper();
         String seatsJson = getFromREDIS(key);
         try {
-            seats = mapper.readValue(seatsJson, new TypeReference<List<List<Boolean>>>() {
+            seats = mapper.readValue(seatsJson, new TypeReference<ArrayList<ArrayList<Boolean>>>() {
             });
-            seatsJson = mapper.writeValueAsString(seats);
+            function.setSeats(seats);
+            function.buyTicket(row, col);
+            seatsJson = mapper.writeValueAsString(function.getSeats());
+            saveToREDIS(key, seatsJson);
         } catch (JsonParseException e) {
             e.printStackTrace();
         } catch (JsonMappingException e) {
@@ -70,10 +73,6 @@ public class RedisMethods {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (!seats.get(row).get(col)) {
-            seats.get(row).set(col, true);
-        }
-        saveToREDIS(key, seatsJson);
         return seats;
     }
 
@@ -83,7 +82,7 @@ public class RedisMethods {
         ObjectMapper mapper = new ObjectMapper();
         String seatsJson = getFromREDIS(key);
         try {            
-            seats = mapper.readValue(seatsJson, new TypeReference<List<List<Boolean>>>() {
+            seats = mapper.readValue(seatsJson, new TypeReference<ArrayList<ArrayList<Boolean>>>() {
             });
         } catch (JsonParseException e) {
             e.printStackTrace();

@@ -20,7 +20,6 @@ var apiclient = (function () {
             }).done(function () {
                 callback(row, col, asiento);
             }).fail(function (datosDelFallo) {
-                console.log(datosDelFallo);
                 alert("¡Compra Rechazada!. El asiento está ocupado.");
             });
         }

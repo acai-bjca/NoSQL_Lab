@@ -27,7 +27,6 @@ Para facilitar el manejo de las operaciones sobre REDIS, crearemos diversos mét
 - Después se creó el método 'getSeatsRedis' el cual, al igual que 'buyTicketRedis', debe retornar la matriz de booleanos asociada a la llave que representa a la función pero sin modificarla.
 	![](img/6metodoGetSeatsRedis.png)
 
-
 Ahora se creó una nueva implementación de la clase CinemaPersitence pero llamada 'RedisCinemaPersistence' y se procedió a modificar algunos métodos para que se consulté la información de las funciones en REDIS.
 
 - Se editó el método 'buyTicket' de la clase 'RedisCinemaPersistence' de modo que utilice el método 'buyTicketRedis' creado anteriomente. 
@@ -35,3 +34,12 @@ Ahora se creó una nueva implementación de la clase CinemaPersitence pero llama
 
 - Se editó el constructor de la clase 'RedisCinemaPersistence', para que la data stub que cargue sea actualizada con los datos más recientes del REDIS al momento de iniciar el servidor.
 	![](img/8creandoPersistenciaRedis.png)
+	
+### Pruebas
+Finalmente se realizaron pruebas que permitieran verificar la conexión a la base de datos REDIS.
+	![](img/PruebaRedis1.png)
+	
+Aqui se puede observar un ejemplo, en el que se consulta desde java a la base de datos y se traen los asientos de un cinema.
+	![](img/PruebaRedis2.png)
+	
+Nuestra aplicación permite hacer las reservas y persiste los hacientos reservados correctamente.

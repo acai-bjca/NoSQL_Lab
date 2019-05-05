@@ -20,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Service;
 
 /**
  *
@@ -59,14 +58,12 @@ public class CinemaServices {
         Cinema cine = null;
         try {
             cine = cps.getCinemaByName(name);
-            //System.out.println("entra nombre");
         } catch (CinemaPersistenceException ex) {
             Logger.getLogger(CinemaServices.class.getName()).log(Level.SEVERE, null, ex);
             
             throw new CinemaException(name+" no existe este cinema ");
             
         }
-        //System.out.println("antes de retornar"+cine.getName());
         return cine;
     }
     
@@ -87,7 +84,6 @@ public class CinemaServices {
 			
 			throw new CinemaException("no existe las funciones en este cinema con esta fecha");
 		}
-    	//System.out.println(funciones.size());
     	return funciones;
     }
     

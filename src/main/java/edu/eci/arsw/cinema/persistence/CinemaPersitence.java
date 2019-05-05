@@ -12,13 +12,10 @@ import edu.eci.arsw.cinema.model.Movie;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Component;
-
 /**
  *
  * @author cristian
  */
-@Component
 public interface CinemaPersitence {
 		
     

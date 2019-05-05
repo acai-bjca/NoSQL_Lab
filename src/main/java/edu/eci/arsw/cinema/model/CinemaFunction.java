@@ -17,36 +17,36 @@ import java.util.List;
  * @author cristian
  */
 public class CinemaFunction {
-    
+
     private Movie movie;
-    private volatile List<List<Boolean>> seats=new ArrayList<>();
+    private volatile List<List<Boolean>> seats = new ArrayList<>();
     private String date;
-    
-    public CinemaFunction(){}
-    
-    public CinemaFunction(Movie movie, String date){
-        this.movie=movie;
-        this.date=date;
-        for (int i=0;i<7;i++){
-            List<Boolean> row= new ArrayList<>(Arrays.asList(new Boolean[12]));
+
+    public CinemaFunction() {
+    }
+
+    public CinemaFunction(Movie movie, String date) {
+        this.movie = movie;
+        this.date = date;
+        for (int i = 0; i < 7; i++) {
+            List<Boolean> row = new ArrayList<>(Arrays.asList(new Boolean[12]));
             Collections.fill(row, Boolean.TRUE);
             this.seats.add(row);
         }
     }
-    
-    public void buyTicket(int row,int col) throws CinemaException{
-        if (seats.get(row).get(col).equals(true)){
-            seats.get(row).set(col,Boolean.FALSE);
-        }
-        else{
+
+    public void buyTicket(int row, int col) throws CinemaException {
+        if (seats.get(row).get(col).equals(true)) {
+            seats.get(row).set(col, Boolean.FALSE);
+        } else {
             throw new CinemaException("Seat booked");
         }
     }
-    
+
     public List<List<Boolean>> getSeats() {
         return this.seats;
     }
-    
+
     public Movie getMovie() {
         return movie;
     }
@@ -63,24 +63,30 @@ public class CinemaFunction {
         this.date = date;
     }
 
-    public void setSeats(List<List<Boolean>> seats){
+    public void setSeats(List<List<Boolean>> seats) {
         this.seats = seats;
     }
-    
+
     public int freeSeats() {
-    	int count = 0;
-    	for (int i = 0; i < seats.size(); i++) {
-    		for (int j = 0; j < seats.get(i).size(); j++) {
-    			if(seats.get(i).get(j)) count++;
-    		}
-		}    	
-    	return count;
+        int count = 0;
+        for (int i = 0; i < seats.size(); i++) {
+            for (int j = 0; j < seats.get(i).size(); j++) {
+                if (seats.get(i).get(j))
+                    count++;
+            }
+        }
+        return count;
     }
 
-	public void updateAtributes(Movie movie, String date, List<List<Boolean>> seats) {		
-		this.movie = movie;
-		this.date = date;
-		this.seats = seats;		
-	}  
-    
+    public void updateAtributes(Movie movie, String date, List<List<Boolean>> seats) {
+        this.movie = movie;
+        this.date = date;
+        this.seats = seats;
+    }
+
+    @Override
+    public String toString() {
+        return "Function={movie=" + movie + ", date=" + date + ", seats" + seats + "}";
+    }
+
 }
